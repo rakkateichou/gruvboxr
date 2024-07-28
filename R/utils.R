@@ -21,17 +21,19 @@ get_stylesheets_location <- function(){
 
   potential_paths <-
     Filter(function(path_parts) {
-           !is.null(path_parts) && dir.exists(fs::path_join(c(path_parts,
-                                              "resources",
-                                              "stylesheets")))
+           !is.null(path_parts) && dir.exists(fs::path_join(c(path_parts, "resources")))
           },
           lapply(rstudio_dirs, extract_rstudio_path_parts)
     )
 
   if(length(potential_paths) == 0) stop("Could not find location of your RStudio installation.")
 
+  stylesheets_path <- fs::path_join(c(potential_paths[[1]], "resources", "stylesheets"))
+
+  dir.create(stylesheets_path, recursive = TRUE, showWarnings = FALSE)
+
   ## return first path that existed
-  fs::path_join(c(potential_paths[[1]], "resources", "stylesheets"))
+  stylesheets_path
 
 }
 
