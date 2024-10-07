@@ -1,3 +1,5 @@
+# Pathed for the latest RStudio (2024)
+
 # gruvboxR
 
 A gruvbox RStudio theme. 
